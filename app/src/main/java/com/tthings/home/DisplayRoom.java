@@ -5,20 +5,26 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.tthings.home.adapter.RoomViewSwichBoardAdapter;
 
 
@@ -32,6 +38,7 @@ public class DisplayRoom extends Fragment {
         // Required empty public constructor
     }
 
+    DrawerLayout dr;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,16 +56,33 @@ public class DisplayRoom extends Fragment {
         GridLayoutManager manager = new GridLayoutManager(getActivity(),2,RecyclerView.VERTICAL,false);
 
         rvs.setLayoutManager(manager);
-        rvs.setAdapter(new RoomViewSwichBoardAdapter(getActivity(),3));
+
+        RoomViewSwichBoardAdapter ad1 = new RoomViewSwichBoardAdapter(this.getContext(),3);
+
+        rvs.setAdapter(ad1);
 
         if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
             ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
             ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         }
+        dr = v.findViewById(R.id.room_slider);
+        dr.closeDrawers();
+
+        NavigationView nv = v.findViewById(R.id.nav_view);
+
+        LinearLayout l = v.findViewById(R.id.room);
+        l.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dr.openDrawer(Gravity.LEFT);
+            }
+        });
 
 
 
+
+        //getActivity().onBackPressed();
         return v;
     }
 
@@ -69,6 +93,5 @@ public class DisplayRoom extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }

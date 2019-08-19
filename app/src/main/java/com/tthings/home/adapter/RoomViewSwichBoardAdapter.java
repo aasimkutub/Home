@@ -14,11 +14,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tthings.home.R;
-
-import org.w3c.dom.Text;
 
 public class RoomViewSwichBoardAdapter extends RecyclerView.Adapter<RoomViewSwichBoardAdapter.viewHolder> {
 
@@ -31,8 +30,22 @@ public class RoomViewSwichBoardAdapter extends RecyclerView.Adapter<RoomViewSwic
     public RoomViewSwichBoardAdapter(Context context, int id) {
         this.context = context;
         this.id = id;
+
+
     }
 
+    public RoomViewSwichBoardAdapter(Context context, int id, FragmentManager temp) {
+        this.context = context;
+        this.id = id;
+
+    }
+
+
+    public interface rvListener {
+        void data();
+    }
+
+    public rvListener listner;
 
 
     @NonNull
@@ -132,7 +145,6 @@ public class RoomViewSwichBoardAdapter extends RecyclerView.Adapter<RoomViewSwic
                 Toast.makeText(context, "Switch Board " + pos, Toast.LENGTH_SHORT).show();
 
 
-
             }
 
             else if (id == 2){
@@ -143,6 +155,7 @@ public class RoomViewSwichBoardAdapter extends RecyclerView.Adapter<RoomViewSwic
             }
 
             else {
+
                 Toast.makeText(context, "Switch " + pos, Toast.LENGTH_SHORT).show();
                 /*Switch s = view.findViewById(R.id.switchToggle);
                 if (s.isChecked()) {

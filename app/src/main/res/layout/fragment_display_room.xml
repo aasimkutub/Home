@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<androidx.drawerlayout.widget.DrawerLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisplayRoom"
-    android:background="@drawable/background">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/room_slider"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".DisplayRoom"
+        android:background="#e9e9e9">
 
     <LinearLayout
         android:id="@+id/room"
-        android:layout_width="80dp"
+        android:layout_width="10dp"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
+        android:background="@android:color/black"
         android:orientation="vertical"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="200dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/board"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:clickable="true"
         >
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDisplayRoomRoomCard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+        <!--
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDisplayRoomRoomCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
 
-        </androidx.recyclerview.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
+        -->
 
     </LinearLayout>
     <LinearLayout
@@ -37,7 +53,9 @@
         android:layout_alignParentRight="true"
         android:layout_above="@+id/board"
         android:layout_toEndOf="@+id/room"
+        android:background="@android:color/transparent"
         android:layout_alignParentEnd="true">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDisplayRoomSwitchCard1"
             android:layout_width="match_parent"
@@ -58,8 +76,9 @@
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/room"
         android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:background="@android:color/transparent">
+        android:background="#E6E6E6">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDisplayRoomSwitchBoard"
             android:layout_width="match_parent"
@@ -70,5 +89,42 @@
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
+    </RelativeLayout>
 
-</RelativeLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            >
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                >
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDisplayRoomRoomCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+
+
+
